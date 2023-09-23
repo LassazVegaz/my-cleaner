@@ -13,6 +13,11 @@ if (!appsDir) {
 	throw new Error("APP_DIR not defined");
 }
 
+const ignoreFolders: string[] = [];
+if (process.env.IGNORE_FOLDERS) {
+	ignoreFolders.push(...process.env.IGNORE_FOLDERS.split(","));
+}
+
 const cleaners: ICleaner[] = [new NpmCleaner(), new DotnetCleaner()];
 
 // get a cleaner for the dir
@@ -27,6 +32,11 @@ const getCleaner = async (dir: string) => {
 
 // go through all folders from the given dir and clean them
 const startCleaning = async (from: string) => {
+	if (ignoreFolders.includes(path.basename(from))) {
+		console.log(`Ignoring ${from}---------------------------------`);
+		return;
+	}
+
 	console.log(`Searching ${from}---------------------------------`);
 
 	const cleaner = await getCleaner(from);
