@@ -3,6 +3,7 @@ import fs from "fs";
 import path from "path";
 import ICleaner from "./ICleaner.js";
 import NpmCleaner from "./cleaners/NpmCleaner.js";
+import DotnetCleaner from "./cleaners/DotnetCleaner.js";
 
 dotenv.config();
 
@@ -12,7 +13,7 @@ if (!appsDir) {
 	throw new Error("APP_DIR not defined");
 }
 
-const cleaners: ICleaner[] = [new NpmCleaner()];
+const cleaners: ICleaner[] = [new NpmCleaner(), new DotnetCleaner()];
 
 // get a cleaner for the dir
 const getCleaner = async (dir: string) => {
