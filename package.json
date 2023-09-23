@@ -1,0 +1,20 @@
+{
+	"name": "my-cleaner",
+	"version": "1.0.0",
+	"description": "",
+	"main": "out/index.js",
+	"type": "module",
+	"scripts": {
+		"start": "node out/index.js"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"devDependencies": {
+		"@types/node": "^20.6.3",
+		"typescript": "^5.2.2"
+	},
+	"dependencies": {
+		"dotenv": "^16.3.1"
+	}
+}
